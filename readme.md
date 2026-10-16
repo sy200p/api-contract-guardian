@@ -57,6 +57,7 @@ Found 1 endpoint change(s):
 
 ## Project structure
 
+
 - `src/api_contract_guardian/` - Python package
 - `examples/` - sample OpenAPI JSON files
 - `pyproject.toml` - Python package configuration
