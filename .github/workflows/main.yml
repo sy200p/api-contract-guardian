@@ -33,4 +33,4 @@ jobs:
       run: |
         # IMPORTANT: Replace 'my-cli' with the actual command name 
         # defined in your pyproject.toml or setup.py (entry points)
-        my-cli --help
+        api-contract-guardian --help
