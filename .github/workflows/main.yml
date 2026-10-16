@@ -1,0 +1,36 @@
+name: Python CLI Check
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  build-and-verify:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install dependencies and CLI package
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        # This installs your CLI package in editable mode so the command becomes available
+        pip install .
+
+    - name: Verify CLI command works
+      run: |
+        # IMPORTANT: Replace 'my-cli' with the actual command name 
+        # defined in your pyproject.toml or setup.py (entry points)
+        my-cli --help
